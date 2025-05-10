@@ -5,6 +5,7 @@ canvas.width = innerWidth;
 canvas.height = innerHeight;
 
 let player = new Player();
+let enemy = new Enemy();
 
 //animation loop
 function animate()
@@ -28,6 +29,8 @@ function animate()
 
     player.draw()
     player.update()
+    enemy.draw()
+    enemy.update()
     window.requestAnimationFrame(animate);
 }
 
