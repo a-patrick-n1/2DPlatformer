@@ -1,3 +1,4 @@
+let projectiles = []
 window.addEventListener("keydown", event => {
     switch(event.key)
     {
@@ -17,6 +18,14 @@ window.addEventListener("keydown", event => {
             break
         case "s":
             player.velocity.y = 30;
+            break;
+        case " ":
+            projectiles.push(new Projectile({
+                position: {
+                    x: player.position.x, 
+                    y: player.position.y + player.size / 2
+                }
+            }))
             break;
     }
 })

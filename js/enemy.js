@@ -3,7 +3,7 @@ class Enemy
     constructor()
     {
         this.position = {
-            x: 500,
+            x: 650,
             y: 0,
         },
         this.velocity = {
@@ -33,10 +33,10 @@ class Enemy
         this.sides.right = this.position.x + this.size
         this.position.x += this.velocity.x;
         //stop character on screen bounds
-        if (this.sides.bottom >= 400)
+        if (this.sides.bottom >= 650)
         {
             this.velocity.y = 0;
-            this.position.y = 400 - this.size;
+            this.position.y = 650 - this.size;
         }
         else
         {
@@ -57,7 +57,7 @@ class Enemy
         }
         else
         {
-            return false;
+            return false
         }
     }
 }
