@@ -33,14 +33,31 @@ class Enemy
         this.sides.right = this.position.x + this.size
         this.position.x += this.velocity.x;
         //stop character on screen bounds
-        if (this.sides.bottom >= canvas.height)
+        if (this.sides.bottom >= 400)
         {
             this.velocity.y = 0;
-            this.position.y = canvas.height - this.size;
+            this.position.y = 400 - this.size;
         }
         else
         {
             this.velocity.y += 0.2;
+        }
+    }
+    isTouching(object)
+    {
+        //right side collision
+        if(this.sides.right >= object.position.x && this.sides.right <= object.sides.right && this.sides.bottom >= object.position.y && this.position.y <= object.sides.bottom)
+        {
+            return true
+        }
+        //left side collison
+        else if(this.position.x <= object.sides.right && this.position.x >= object.position.x && this.sides.bottom >= object.position.y && this.position.y <= object.sides.bottom)
+        {
+            return true
+        }
+        else
+        {
+            return false;
         }
     }
 }

@@ -11,7 +11,7 @@ window.addEventListener("keydown", event => {
         case "w":
             if(player.jumps > 0)
             {
-                player.velocity.y = -10;
+                player.velocity.y = -6;
                 player.jumps -= 1;
             }
             break
