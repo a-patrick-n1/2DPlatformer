@@ -10,6 +10,9 @@ let enemy = new Enemy();
 //animation loop
 function animate()
 {
+    //adjustable window
+    canvas.width = innerWidth;
+    canvas.height = innerHeight;
     //background
     c.fillStyle = "black";
     c.fillRect(0, 0, canvas.width, canvas.height);
@@ -27,7 +30,7 @@ function animate()
         player.velocity.x = 0;
     }
 
-    player.draw()
+    player.draw("blue")
     player.update()
     enemy.draw()
     enemy.update()

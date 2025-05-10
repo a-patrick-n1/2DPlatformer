@@ -20,10 +20,11 @@ class Player
             right: false
         }
         this.jumps = 2;
+        this.invincible = false
     }
-    draw()
+    draw(color)
     {
-        c.fillStyle = "green";
+        c.fillStyle = color;
         c.fillRect(this.position.x, this.position.y, this.size, this.size);
     }
     update()
@@ -53,6 +54,23 @@ class Player
         {
             this.velocity.x = 0
             this.position.x = canvas.width - this.size
+        }
+    }
+    isTouching(object)
+    {
+        //right side collision
+        if(this.sides.right >= object.position.x && this.sides.right <= object.sides.right && this.sides.bottom >= object.position.y && this.position.y <= object.sides.bottom)
+        {
+            return true
+        }
+        //left side collison
+        else if(this.position.x <= object.sides.right && this.position.x >= object.position.x && this.sides.bottom >= object.position.y && this.position.y <= object.sides.bottom)
+        {
+            return true
+        }
+        else
+        {
+            return false;
         }
     }
 }
