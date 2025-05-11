@@ -14,8 +14,8 @@ class Projectile
     }
     draw()
     {
-        c.fillStyle = "green";
-        c.fillRect(this.position.x, this.position.y, 50, 20);
+        c.fillStyle = "orange";
+        c.fillRect(this.position.x, this.position.y, 50, 7);
     }
     update()
     {

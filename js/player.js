@@ -22,11 +22,6 @@ class Player
         this.jumps = 2;
         this.invincible = false
     }
-    draw(color)
-    {
-        c.fillStyle = color;
-        c.fillRect(this.position.x, this.position.y, this.size, this.size);
-    }
     update()
     {
         //update position based off velocity
