@@ -6,15 +6,18 @@ canvas.height = innerHeight;
 
 let player = new Player();
 let playerSprite = new Sprite({
-    position: {
-        x: 0,
-        y: 0
-    },
     imageSrc: "imgs/idleRight.png",
-    frames: 6
+    frames: 6,
+    size: 20
+})
+let deathSprite = new Sprite({
+    imageSrc: "imgs/death.png",
+    frames: 1,
+    size: 8
 })
 let enemies = []
 let enemy = new Enemy();
+let invincibleFrames = 300
 
 //animation loop
 function animate()
@@ -42,6 +45,23 @@ function animate()
         player.velocity.x = 0;
     }
 
+    //player enemy interaction
+    if(player.isTouching(enemy))
+    {
+        if(!player.invincible)
+        {
+            player.health -= 20
+            invincibleFrames = 1
+            player.invincible = true;
+        }
+    }
+    invincibleFrames--
+    if(invincibleFrames <= 0)
+    {
+        player.invincible = false
+    }
+    console.log(player.health)
+
     //projectile firing
     projectiles.forEach(p => {
         p.draw()
@@ -56,14 +76,20 @@ function animate()
         }
     });
 
-    playerSprite.animate(player)
-    player.update()
-
     enemy.draw()
     enemy.update()
-    console.log(playerSprite.image.src)
 
-    window.requestAnimationFrame(animate);
+    if(player.health >= 0)
+    {
+        playerSprite.animate(player)
+        player.update()
+        window.requestAnimationFrame(animate);
+    }
+    else
+    {
+        deathSprite.animate(player)
+    }
+
 }
 
 animate();

@@ -1,5 +1,33 @@
 let projectiles = []
 let lastKey = ""
+window.addEventListener("click", event => {
+    if(lastKey === "a")
+    {
+        projectiles.push(new Projectile({
+            position: {
+                x: player.position.x, 
+                y: player.position.y + player.size / 2
+            },
+            velocity: {
+                x: -30,
+                y: 0
+            } 
+        }))
+    }
+    else if(lastKey === "d")
+    {
+        projectiles.push(new Projectile({
+            position: {
+                x: player.position.x, 
+                y: player.position.y + player.size / 2
+            },
+            velocity: {
+                x: 30,
+                y: 0
+            }
+        }))
+    }
+})
 window.addEventListener("keydown", event => {
     switch(event.key)
     {

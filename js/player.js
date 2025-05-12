@@ -21,6 +21,7 @@ class Player
         }
         this.jumps = 2;
         this.invincible = false
+        this.health = 100
     }
     update()
     {
