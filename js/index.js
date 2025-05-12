@@ -5,6 +5,14 @@ canvas.width = innerWidth;
 canvas.height = innerHeight;
 
 let player = new Player();
+let playerSprite = new Sprite({
+    position: {
+        x: 0,
+        y: 0
+    },
+    imageSrc: "imgs/idleRight.png",
+    frames: 6
+})
 let enemies = []
 let enemy = new Enemy();
 
@@ -16,15 +24,17 @@ function animate()
     canvas.height = innerHeight;
     player.size = canvas.width / 20;
     //background
-    c.fillStyle = "black";
+    c.fillStyle = "blue";
     c.fillRect(0, 0, canvas.width, canvas.height);
 
     //player movement
     if(player.moving.left)
     {
+        playerSprite.image.src = "imgs/idleLeft.png"
         player.velocity.x = -5;
     } else if(player.moving.right)
     {
+        playerSprite.image.src = "imgs/idleRight.png"
         player.velocity.x = 5;
     }
     else
@@ -32,17 +42,11 @@ function animate()
         player.velocity.x = 0;
     }
 
-    player.draw("blue")
-    player.update()
-
-    enemy.draw()
-    enemy.update()
-
+    //projectile firing
     projectiles.forEach(p => {
-        p.velocity.x = 20;
         p.draw()
         p.update()
-        if(p.position.x >= canvas.width)
+        if(p.position.x >= canvas.width || p.position.x <= 0)
         {
             projectiles.shift()
         }
@@ -51,6 +55,13 @@ function animate()
             console.log("hit")
         }
     });
+
+    playerSprite.animate(player)
+    player.update()
+
+    enemy.draw()
+    enemy.update()
+    console.log(playerSprite.image.src)
 
     window.requestAnimationFrame(animate);
 }
