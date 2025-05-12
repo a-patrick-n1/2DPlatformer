@@ -10,7 +10,8 @@ let playerSprite = new Sprite({
         x: 0,
         y: 0
     },
-    imageSrc: "imgs/idleRight.png"
+    imageSrc: "imgs/idleRight.png",
+    frames: 6
 })
 let enemies = []
 let enemy = new Enemy();
@@ -43,7 +44,6 @@ function animate()
 
     //projectile firing
     projectiles.forEach(p => {
-        p.velocity.x = 20
         p.draw()
         p.update()
         if(p.position.x >= canvas.width || p.position.x <= 0)
@@ -61,6 +61,7 @@ function animate()
 
     enemy.draw()
     enemy.update()
+    console.log(playerSprite.image.src)
 
     window.requestAnimationFrame(animate);
 }

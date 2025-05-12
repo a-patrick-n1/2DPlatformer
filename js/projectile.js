@@ -1,12 +1,9 @@
 class Projectile
 {
-    constructor({position})
+    constructor({position, velocity})
     {
         this.position = position
-        this.velocity = {
-            x: 0,
-            y: 0
-        }
+        this.velocity = velocity
         this.sides = {
             bottom: this.position.y + 50,
             right: this.position.x + 20
