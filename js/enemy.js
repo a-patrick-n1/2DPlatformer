@@ -1,11 +1,8 @@
 class Enemy
 {
-    constructor()
+    constructor({position})
     {
-        this.position = {
-            x: 650,
-            y: 0,
-        },
+        this.position = position
         this.velocity = {
             x: 0,
             y: 0
@@ -19,6 +16,7 @@ class Enemy
             left: false,
             right: false
         }
+        this.health = 100
     }
     draw()
     {
