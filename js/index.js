@@ -6,15 +6,14 @@ canvas.height = innerHeight;
 
 let player = new Player();
 let playerSprite = new Sprite({
-    position: {
-        x: 0,
-        y: 0
-    },
     imageSrc: "imgs/idleRight.png",
-    frames: 6
+    frames: 6,
+    size: 20
 })
 let enemies = []
-let enemy = new Enemy();
+enemies.push(new Enemy({position: {x:600, y:0}}))
+enemies.push(new Enemy({position: {x:800, y:0}}))
+let invincibleFrames = 300
 
 //animation loop
 function animate()
@@ -42,27 +41,64 @@ function animate()
         player.velocity.x = 0;
     }
 
+    //player enemy interaction
+    enemies.forEach(enemy => {
+        if(player.isTouching(enemy))
+        {
+            if(!player.invincible)
+            {
+                player.health -= 20
+                invincibleFrames = 180
+                player.invincible = true;
+            }
+        }
+    });
+    invincibleFrames--
+    if(invincibleFrames <= 0)
+    {
+        player.invincible = false
+    }
+
     //projectile firing
     projectiles.forEach(p => {
         p.draw()
         p.update()
         if(p.position.x >= canvas.width || p.position.x <= 0)
         {
-            projectiles.shift()
+            projectiles.splice(projectiles.indexOf(p), 1)
         }
-        if(enemy.isTouching(p))
-        {
-            console.log("hit")
-        }
+        //check if projectile is touching enemy
+        enemies.forEach(enemy => {
+            if(enemy.isTouching(p))
+            {
+                projectiles.splice(projectiles.indexOf(p), 1)
+                enemy.health -= 20
+            }
+            //enemy death
+            if(enemy.health <= 0)
+            {
+                enemies.splice(enemies.indexOf(enemy), 1)
+            }
+        });
     });
 
-    playerSprite.animate(player)
-    player.update()
+    enemies.forEach(enemy => {
+        enemy.draw()
+        enemy.update()
+    });
 
-    enemy.draw()
-    enemy.update()
-    console.log(playerSprite.image.src)
-
+    if(player.health >= 1)
+    {
+        playerSprite.animate(player)
+        player.update()
+    }
+    else
+    {
+        playerSprite.frames = 1
+        playerSprite.size = 10
+        playerSprite.image.src = "imgs/death.png"
+        playerSprite.animate(player)
+    }
     window.requestAnimationFrame(animate);
 }
 

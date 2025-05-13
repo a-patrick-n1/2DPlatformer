@@ -1,6 +1,6 @@
 class Sprite
 {
-    constructor({position, imageSrc, frames})
+    constructor({position = 0, imageSrc, frames, size})
     {
         this.position = position
         this.image = new Image()
@@ -10,6 +10,7 @@ class Sprite
         this.elapsed = 0
         this.hold = 10
         this.frames = frames
+        this.size = size
     }
     //animate sprites
     animate(object)
@@ -24,8 +25,8 @@ class Sprite
             //position and size
             object.position.x,
             object.position.y,
-            canvas.width / 20,
-            canvas.width / 20
+            canvas.width / this.size,
+            canvas.width / this.size
         )
         //increase elapsed for each frame then modulus by the delay
         this.elapsed++
@@ -41,10 +42,5 @@ class Sprite
             }
         }
         
-    }
-    //add still sprites
-    draw()
-    {
-
     }
 }
