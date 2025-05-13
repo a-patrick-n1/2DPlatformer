@@ -1,6 +1,6 @@
 class Sprite
 {
-    constructor({position = 0, imageSrc, frames, size})
+    constructor({position = 0, imageSrc, frames, size = 1})
     {
         this.position = position
         this.image = new Image()
@@ -41,6 +41,34 @@ class Sprite
                 this.current = 0
             }
         }
-        
+    }
+    animateFixed(x, y)
+    {
+        c.drawImage(
+            //crop
+            this.image,
+            this.current * (this.image.width / this.frames),
+            0,
+            this.image.width / this.frames,
+            this.image.height,
+            //position and size
+            x,
+            y,
+            this.image.width / 19 * this.size,
+            this.image.height * this.size
+        )
+        //increase elapsed for each frame then modulus by the delay
+        this.elapsed++
+        if(this.elapsed % this.hold === 0)
+        {
+            if(this.current < this.frames - 1)
+            {
+                this.current++
+            }
+            else
+            {
+                this.current = 0
+            }
+        }
     }
 }

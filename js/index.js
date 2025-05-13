@@ -10,6 +10,11 @@ let playerSprite = new Sprite({
     frames: 6,
     size: 20
 })
+let HealthUI = new Sprite({
+    imageSrc: "imgs/1StarHealthUI.png",
+    frames: 19,
+    size: 0.8
+})
 let enemies = []
 enemies.push(new Enemy({position: {x:600, y:0}}))
 enemies.push(new Enemy({position: {x:800, y:0}}))
@@ -23,7 +28,7 @@ function animate()
     canvas.height = innerHeight;
     player.size = canvas.width / 20;
     //background
-    c.fillStyle = "blue";
+    c.fillStyle = "gray";
     c.fillRect(0, 0, canvas.width, canvas.height);
 
     //only update game if player is alive
@@ -51,6 +56,7 @@ function animate()
                 if(!player.invincible)
                 {
                     player.health -= 20
+                    document.querySelector('#healthBar').style = `width: ${player.health * 3}px`
                     invincibleFrames = 180
                     player.invincible = true;
                 }
@@ -98,11 +104,13 @@ function animate()
     }
     else
     {
+        //death animation
         playerSprite.frames = 1
         playerSprite.size = 10
         playerSprite.image.src = "imgs/death.png"
         playerSprite.animate(player)
     }
+    HealthUI.animateFixed(0, 0)
     window.requestAnimationFrame(animate);
 }
 
