@@ -72,31 +72,36 @@ window.addEventListener("keydown", event => {
             break
         //shoot
         case " ":
-            if(lastKey === "a")
+            //delay for shooting
+            if(player.shotDelay <= 0)
             {
-                projectiles.push(new Projectile({
-                    position: {
-                        x: player.position.x, 
-                        y: player.position.y + player.size / 2
-                    },
-                    velocity: {
-                        x: -30,
-                        y: 0
-                    } 
-                }))
-            }
-            else if(lastKey === "d")
-            {
-                projectiles.push(new Projectile({
-                    position: {
-                        x: player.position.x, 
-                        y: player.position.y + player.size / 2
-                    },
-                    velocity: {
-                        x: 30,
-                        y: 0
-                    }
-                }))
+                if(lastKey === "a")
+                {
+                    projectiles.push(new Projectile({
+                        position: {
+                            x: player.position.x, 
+                            y: player.position.y + player.size / 2
+                        },
+                        velocity: {
+                            x: -30,
+                            y: 0
+                        }
+                    }))
+                }
+                else if(lastKey === "d")
+                {
+                    projectiles.push(new Projectile({
+                        position: {
+                            x: player.position.x, 
+                            y: player.position.y + player.size / 2
+                        },
+                        velocity: {
+                            x: 30,
+                            y: 0
+                        }
+                    }))
+                }
+                player.shotDelay = 30
             }
             break
     }

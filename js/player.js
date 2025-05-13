@@ -22,6 +22,7 @@ class Player
         this.jumps = 2;
         this.invincible = false
         this.health = 100
+        this.shotDelay = 30
     }
     update()
     {

@@ -81,6 +81,8 @@ function animate()
             }
         });
     });
+    //projectile delay
+    player.shotDelay--
 
     enemies.forEach(enemy => {
         enemy.draw()
