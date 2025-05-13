@@ -11,8 +11,8 @@ let playerSprite = new Sprite({
     size: 20
 })
 let HealthUI = new Sprite({
-    imageSrc: "imgs/1StarHealthUI.png",
-    frames: 19,
+    imageSrc: "imgs/HealthUI.png",
+    frames: 1,
     size: 0.8
 })
 let enemies = []

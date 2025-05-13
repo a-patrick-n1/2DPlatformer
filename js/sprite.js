@@ -54,7 +54,7 @@ class Sprite
             //position and size
             x,
             y,
-            this.image.width / 19 * this.size,
+            this.image.width / this.frames * this.size,
             this.image.height * this.size
         )
         //increase elapsed for each frame then modulus by the delay
