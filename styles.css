@@ -2,3 +2,19 @@ body{
     margin: 0;
     padding: 0;
 }
+#healthbar{
+    margin: 10px 0px 0px 115px;
+    background-image: linear-gradient(to right, green, lightgreen);
+    width: 300px;
+    height: 25px;
+    box-shadow: 5px 5px darkslategrey;
+    border-style: solid;
+}
+#energyBar{
+    margin: 90px 0px 0px 150px;
+    background-image: linear-gradient(to right, Blue, lightblue);
+    width: 200px;
+    height: 25px;
+    box-shadow: 5px 5px darkslategrey;
+    border-style: solid;
+}
